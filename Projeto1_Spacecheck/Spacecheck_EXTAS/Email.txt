@@ -1,0 +1,40 @@
+Boa noite professor,
+
+Venho por este meio colocar uma questão que eu e o meu colega temos sobre o projeto.
+No desenvolvimento do script spacecheck.sh nós utilizámos dois métodos para o cálculo do espaço em disco das diretorias dadas:
+
+    Calcular o espaço em disco de todos os filhos, netos, etc para cada uma das diretorias, que vai apanhar o tamanho de todos os ficheiros dentro da diretoria dada + os ficheiros dentro de todas as diretorias filhas da pasta dada. (através dos comandos find e  du, com as opções adequadas ao problema)
+    Calcular o espaço em disco apenas dos ficheiros que são filhos diretos da diretoria dada e fazer o mesmo para as diretorias filhas. (através dos comandos find e du. mas utilizando também a opção do find de "maxdepth -1")
+
+O output utilizando o 1º método vai de encontro ao representado dos exemplos dados no guião: o valor mais alto é a diretoria mãe e quanto mais nos afastamos da diretoria mãe, menor o espaço em disco das diretorias filhas. Ex do guião:
+
+SIZE NAME 20230910 -n .*sh sop
+6723 sop
+5729 sop/praticas
+2668 sop/praticas/aula2
+1939 sop/praticas/aula1
+395 sop/teoricas
+
+No entanto, ao analizarmos os exemplos dados para o spacerate.sh, concluimos que estes não coincidem com este processamento de espaço em disco, mas sim com o processamento do método 2. Passo a explicar com um exemplo do guião:
+
+SIZE NAME
+2668 sop/praticas/aula2 NEW
+209 sop/praticas
+90 sop/teoricas
+0 sop/praticas/aula1
+0 sop
+-100 sop/dados REMOVED
+
+Utilizando o 1º método, a alteração sofrida de espaço em disco na diretoria "sop" nunca seria 0, seria antes uma soma das alterações sofridas de todas as suas diretorias filhas.
+
+
+
+Após tentativas, concluimos que manter o método 1 para o spaceheck.sh e utilizar o método 2 no spacerate.sh era impraticável, pois teríamos que, dentro do spacerate.sh recalcular os valores de espaço tal como no spacecheck.sh, mas utilizando a opção do comando find "-maxdepth 1", o que nos parece ilógico, pois estariamos a fazer uma réplica do spacecheck no spacerate apenas com uma minima alteração.
+
+Dito isto e visto que os exemplos dados são, na nossa opinião, contraditórios, gostariamos de saber se seria possível esclarecer qual método devemos usar ou de que forma devemos proceder para podermos concluir o nosso trabalho.
+
+Pedimos desculpa pela hora de envio tardia deste email.
+
+Com os melhores cumprimentos,
+Henrique Oliveira 113585
+Guilherme Santos 113893 
