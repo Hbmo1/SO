@@ -37,12 +37,12 @@ static void *incrementer (void *arg);
  */
 int main (int argc, char *argv[])
 {
-    int niter = 1000;                                                                /* number of iterations by default */
-    int nthr = 1;                                                                       /* number of threads by default */
+    int niter = 1000;                                                           /* number of iterations by default */
+    int nthr = 1;                                                                  /* number of threads by default */
 
     /* command line processing */
-    const char *optstr = "i:t:h";                                                                    /* allowed options */
-    int option;                                                                                        /* parsed option */
+    const char *optstr = "i:t:h";                                                               /* allowed options */
+    int option;                                                                                   /* parsed option */
 
     do {
         switch ((option = getopt (argc, argv, optstr)))
@@ -69,9 +69,9 @@ int main (int argc, char *argv[])
     vSet(0);
 
     /* launching the 'pthreads' */
-    pthread_t thr[nthr];                                                             /* ids of the incrementing threads */
-    int i;                                                                                         /* counting variable */
-    int *status_p;                                                                /* pointer to thread execution status */
+    pthread_t thr[nthr];                                                         /* ids of the incrementing threads */
+    int i;                                                                                     /* counting variable */
+    int *status_p;                                                            /* pointer to thread execution status */
 
     printf ("Launching %d threads, each performing %d increments\n", nthr, niter);
     for (i = 0; i < nthr; i++) {
